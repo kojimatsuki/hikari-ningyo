@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>まいごの人形たち 〜やくそくのよる〜</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game-container">
+
+    <!-- タイトル画面 -->
+    <div id="title-screen" class="screen active">
+      <div id="title-stars"></div>
+      <div class="title-content">
+        <div class="title-emoji">🧸</div>
+        <div class="title-name">まいごの人形たち</div>
+        <div class="title-subtitle">〜やくそくのよる〜</div>
+        <button id="start-btn">はじめる</button>
+      </div>
+    </div>
+
+    <!-- オープニング -->
+    <div id="opening-screen" class="screen">
+      <div id="opening-content">
+        <div id="opening-emoji">🌙</div>
+        <div id="opening-text"></div>
+        <button id="opening-next">つぎへ ▶</button>
+      </div>
+    </div>
+
+    <!-- 探索画面 -->
+    <div id="exploration-screen" class="screen">
+      <div id="stage-header">
+        <div id="stage-name"></div>
+        <div id="stage-description"></div>
+      </div>
+      <div id="exploration-scene">
+        <div id="decorations"></div>
+        <div id="hotspots"></div>
+        <div id="player">🧸</div>
+      </div>
+      <div id="hud">
+        <span id="hud-level">Lv.1</span>
+        <div class="exp-bar"><div id="exp-bar-fill"></div></div>
+        <div id="companions"></div>
+        <div class="menu-buttons">
+          <button id="encyclopedia-btn" class="menu-btn">📖 図鑑</button>
+          <button id="end-game-btn" class="menu-btn">🌅 朝を迎える</button>
+        </div>
+      </div>
+      <div id="stage-nav"></div>
+    </div>
+
+    <!-- ダイアログオーバーレイ -->
+    <div id="dialog-overlay">
+      <div class="dialog-box">
+        <div id="dialog-emoji"></div>
+        <div id="dialog-text"></div>
+        <button id="dialog-btn">つぎへ ▶</button>
+      </div>
+    </div>
+
+    <!-- 人形発見画面 -->
+    <div id="discovery-screen" class="screen">
+      <div id="discovery-effect"></div>
+      <div class="discovery-content">
+        <div id="discovery-emoji"></div>
+        <div id="discovery-name"></div>
+        <div id="discovery-title"></div>
+        <div id="discovery-text"></div>
+        <button id="discovery-join-btn">なかまにする！</button>
+      </div>
+    </div>
+
+    <!-- レベルアップ画面 -->
+    <div id="levelup-screen" class="screen">
+      <div id="levelup-effect"></div>
+      <div class="levelup-content">
+        <h2>✨ レベルアップ！ ✨</h2>
+        <div id="levelup-level">Lv.2</div>
+        <button id="levelup-btn">つぎへ ▶</button>
+      </div>
+    </div>
+
+    <!-- ストーリー解放画面 -->
+    <div id="story-screen" class="screen">
+      <div id="story-title"></div>
+      <div id="story-reveal-text"></div>
+      <button id="story-btn">つぎへ ▶</button>
+    </div>
+
+    <!-- 人形図鑑 -->
+    <div id="encyclopedia-screen" class="screen">
+      <h2>📖 人形図鑑</h2>
+      <div id="encyclopedia-list"></div>
+      <div id="encyclopedia-story"></div>
+      <button id="encyclopedia-close">とじる</button>
+    </div>
+
+    <!-- エンディング画面 -->
+    <div id="ending-screen" class="screen">
+      <div id="ending-emoji"></div>
+      <div id="ending-text"></div>
+      <button id="ending-next">つぎへ ▶</button>
+      <button id="ending-restart">もういちど あそぶ</button>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

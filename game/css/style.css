@@ -1,0 +1,747 @@
+/* style.css — ゲーム全体のスタイル・アニメーション */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+  background: #0a0a1a;
+  color: #e0d8cc;
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#game-container {
+  width: 100%;
+  height: 100dvh;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === スクリーン共通 === */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* === タイトル画面 === */
+#title-screen {
+  background: linear-gradient(to bottom, #05051a, #0d0d2b, #1a1040);
+  text-align: center;
+}
+
+#title-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.title-star {
+  position: absolute;
+  animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+.title-content {
+  position: relative;
+  z-index: 1;
+}
+
+.title-emoji {
+  font-size: 4em;
+  margin-bottom: 0.3em;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.title-name {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #f0e6d3;
+  text-shadow: 0 0 20px rgba(255, 200, 100, 0.5);
+  margin-bottom: 0.2em;
+}
+
+.title-subtitle {
+  font-size: 1em;
+  color: #a89880;
+  margin-bottom: 2em;
+}
+
+#start-btn {
+  background: linear-gradient(135deg, #4a3a6a, #6a4a8a);
+  color: #f0e6d3;
+  border: 2px solid #8a6aaa;
+  border-radius: 30px;
+  padding: 15px 50px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+#start-btn:hover, #start-btn:active {
+  background: linear-gradient(135deg, #6a4a8a, #8a5aaa);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(138, 106, 170, 0.5);
+}
+
+/* === オープニング === */
+#opening-screen {
+  background: linear-gradient(to bottom, #0a0a1a, #15152a);
+  text-align: center;
+  padding: 20px;
+}
+
+#opening-content {
+  max-width: 400px;
+}
+
+#opening-emoji {
+  font-size: 4em;
+  margin-bottom: 0.5em;
+}
+
+#opening-text {
+  font-size: 1.1em;
+  line-height: 1.8;
+  min-height: 4em;
+  white-space: pre-line;
+  margin-bottom: 2em;
+}
+
+#opening-next {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c0b8a8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 10px 40px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+#opening-next:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === 探索画面 === */
+#exploration-screen {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#exploration-scene {
+  width: 100%;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+#stage-header {
+  padding: 8px 15px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  z-index: 5;
+}
+
+#stage-name {
+  font-size: 0.9em;
+  color: #c0b8a8;
+}
+
+#stage-description {
+  font-size: 0.75em;
+  color: #8a8070;
+  margin-top: 2px;
+}
+
+.decoration {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  filter: brightness(0.7);
+}
+
+#player {
+  position: absolute;
+  font-size: 2.5em;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+  z-index: 3;
+  animation: float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.4));
+}
+
+/* === ホットスポット === */
+.hotspot {
+  position: absolute;
+  font-size: 2em;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 4;
+  transition: transform 0.2s;
+}
+
+.hotspot:active {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.hotspot.glowing {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(255, 220, 100, 0.3));
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 220, 100, 0.8));
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+/* === ステージナビ === */
+#stage-nav {
+  display: flex;
+  gap: 5px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  overflow-x: auto;
+  z-index: 5;
+  scrollbar-width: none;
+}
+
+#stage-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.stage-nav-btn {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a89880;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 5px 12px;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.stage-nav-btn.active {
+  background: rgba(138, 106, 170, 0.3);
+  border-color: #8a6aaa;
+  color: #f0e6d3;
+}
+
+.stage-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* === HUD === */
+#hud {
+  display: none;
+  align-items: center;
+  padding: 8px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  gap: 10px;
+  z-index: 5;
+}
+
+#hud-level {
+  font-size: 0.9em;
+  color: #f0c860;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.exp-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#exp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f0c860, #ffa040);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+#companions {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.companion-icon {
+  font-size: 1.2em;
+  animation: companionPop 0.3s ease;
+}
+
+@keyframes companionPop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* === メニューボタン === */
+.menu-buttons {
+  display: flex;
+  gap: 5px;
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.menu-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #a89880;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 0.7em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* === ダイアログ === */
+#dialog-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+#dialog-overlay.active {
+  display: flex;
+}
+
+.dialog-box {
+  background: linear-gradient(135deg, #2a2040, #3a2a50);
+  border: 2px solid #6a5a8a;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+}
+
+#dialog-emoji {
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+#dialog-text {
+  font-size: 1em;
+  line-height: 1.7;
+  white-space: pre-line;
+  margin-bottom: 1.5em;
+  min-height: 3em;
+}
+
+#dialog-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c0b8a8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 8px 30px;
+  font-size: 0.9em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === 人形発見画面 === */
+#discovery-screen {
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 60;
+  text-align: center;
+  padding: 20px;
+}
+
+#discovery-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.discovery-content {
+  position: relative;
+  z-index: 1;
+}
+
+#discovery-emoji {
+  font-size: 5em;
+  margin-bottom: 0.2em;
+  animation: discoveryBounce 0.6s ease;
+}
+
+@keyframes discoveryBounce {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+#discovery-name {
+  font-size: 1.5em;
+  color: #f0c860;
+  font-weight: bold;
+}
+
+#discovery-title {
+  font-size: 0.9em;
+  color: #a89880;
+  margin-bottom: 1em;
+}
+
+#discovery-text {
+  font-size: 1em;
+  line-height: 1.7;
+  white-space: pre-line;
+  margin-bottom: 1.5em;
+  min-height: 3em;
+}
+
+#discovery-join-btn {
+  background: linear-gradient(135deg, #4a6a3a, #5a8a4a);
+  color: #f0f0e0;
+  border: 2px solid #6aaa5a;
+  border-radius: 25px;
+  padding: 12px 35px;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+#discovery-join-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(106, 170, 90, 0.4);
+}
+
+/* === レベルアップ画面 === */
+#levelup-screen {
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 70;
+  text-align: center;
+}
+
+#levelup-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.levelup-content {
+  position: relative;
+  z-index: 1;
+}
+
+.levelup-content h2 {
+  font-size: 1.2em;
+  color: #f0c860;
+  margin-bottom: 0.5em;
+}
+
+#levelup-level {
+  font-size: 3em;
+  color: #ffa040;
+  font-weight: bold;
+  text-shadow: 0 0 30px rgba(255, 160, 64, 0.5);
+  animation: levelPulse 0.8s ease;
+}
+
+@keyframes levelPulse {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#levelup-btn {
+  margin-top: 2em;
+  background: rgba(255, 255, 255, 0.1);
+  color: #c0b8a8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 10px 35px;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === ストーリー解放画面 === */
+#story-screen {
+  background: rgba(10, 5, 30, 0.95);
+  z-index: 75;
+  text-align: center;
+  padding: 20px;
+}
+
+#story-title {
+  font-size: 1.3em;
+  color: #c0a0e0;
+  margin-bottom: 1em;
+}
+
+#story-reveal-text {
+  font-size: 1em;
+  line-height: 2;
+  white-space: pre-line;
+  margin-bottom: 2em;
+  max-width: 350px;
+}
+
+#story-btn {
+  background: rgba(192, 160, 224, 0.15);
+  color: #c0a0e0;
+  border: 1px solid rgba(192, 160, 224, 0.3);
+  border-radius: 20px;
+  padding: 10px 35px;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === 人形図鑑 === */
+#encyclopedia-screen {
+  background: rgba(10, 10, 25, 0.97);
+  z-index: 80;
+  padding: 15px;
+  overflow-y: auto;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+#encyclopedia-screen h2 {
+  text-align: center;
+  font-size: 1.3em;
+  color: #f0c860;
+  margin-bottom: 15px;
+}
+
+#encyclopedia-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.encyclopedia-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.encyclopedia-card.found {
+  border-color: rgba(240, 200, 96, 0.3);
+  background: rgba(240, 200, 96, 0.05);
+}
+
+.card-emoji {
+  font-size: 2.5em;
+  margin-bottom: 0.2em;
+}
+
+.card-name {
+  font-size: 1em;
+  font-weight: bold;
+  color: #f0e6d3;
+}
+
+.card-title {
+  font-size: 0.75em;
+  color: #a89880;
+  margin-bottom: 0.3em;
+}
+
+.card-desc {
+  font-size: 0.7em;
+  color: #8a8070;
+  line-height: 1.4;
+}
+
+#encyclopedia-story {
+  margin-bottom: 20px;
+}
+
+#encyclopedia-story h3 {
+  color: #c0a0e0;
+  margin-bottom: 10px;
+}
+
+.story-note {
+  background: rgba(192, 160, 224, 0.08);
+  border-left: 3px solid #c0a0e0;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.85em;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+#encyclopedia-close {
+  display: block;
+  margin: 0 auto 20px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #a89880;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 10px 40px;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === エンディング === */
+#ending-screen {
+  background: linear-gradient(to bottom, #1a1040, #2a1a50, #3a2a60);
+  text-align: center;
+  padding: 20px;
+}
+
+#ending-emoji {
+  font-size: 4em;
+  margin-bottom: 0.5em;
+}
+
+#ending-text {
+  font-size: 1.1em;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin-bottom: 2em;
+  max-width: 350px;
+  min-height: 4em;
+}
+
+#ending-next {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c0b8a8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 10px 40px;
+  font-size: 1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#ending-restart {
+  display: none;
+  background: linear-gradient(135deg, #4a3a6a, #6a4a8a);
+  color: #f0e6d3;
+  border: 2px solid #8a6aaa;
+  border-radius: 25px;
+  padding: 12px 40px;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === キラキラエフェクト === */
+.sparkle {
+  position: absolute;
+  animation: sparkleAnim 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkleAnim {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+}
+
+/* === シークレットフラッシュ === */
+.secret-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 240, 200, 0.8), transparent);
+  z-index: 100;
+  animation: secretFlash 2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes secretFlash {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* === レスポンシブ === */
+@media (min-width: 481px) {
+  #game-container {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 360px) {
+  .title-name { font-size: 1.3em; }
+  .title-emoji { font-size: 3em; }
+  #encyclopedia-list { grid-template-columns: 1fr; }
+}

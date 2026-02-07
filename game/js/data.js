@@ -1,0 +1,237 @@
+// data.js — ゲームデータ定義
+
+export const DOLLS = [
+  // ステージ1：ゴミ捨て場
+  {
+    id: 'pon',
+    emoji: '🧸',
+    name: 'ポン',
+    title: 'くまのぬいぐるみ',
+    stage: 0,
+    description: 'ふわふわのくまのぬいぐるみ。いつも子供と一緒に寝ていた。',
+    findText: '段ボールの中で、小さなくまが泣いていた。\n「…ひとりは、さみしいよぅ…」',
+    joinText: 'ポンが仲間になった！\n「ありがとう…いっしょにみんなを探そう！」',
+    hotspot: { x: 25, y: 55 },
+    hiddenEmoji: '📦',
+  },
+  {
+    id: 'matochan',
+    emoji: '🪆',
+    name: 'マトちゃん',
+    title: 'マトリョーシカ',
+    stage: 0,
+    description: 'ロシア生まれのマトリョーシカ。中にはちいさな仲間が入っている。',
+    findText: 'ゴミ袋のあいだに、色あざやかな人形がはさまっていた。\n「たすけて…はさまって動けないの…」',
+    joinText: 'マトちゃんが仲間になった！\n「ありがとう！わたしの中の子たちも喜んでるわ！」',
+    hotspot: { x: 70, y: 50 },
+    hiddenEmoji: '🗑️',
+  },
+  // ステージ2：夜の公園
+  {
+    id: 'ohinachan',
+    emoji: '🎎',
+    name: 'おひなちゃん',
+    title: '日本人形',
+    stage: 1,
+    description: 'うつくしい日本人形。ひなまつりの日に子供にもらわれた。',
+    findText: '砂場の中に、きれいな人形が半分うまっていた。\n「…わたくし、お砂が苦手ですの…」',
+    joinText: 'おひなちゃんが仲間になった！\n「助けていただき感謝いたします。ご一緒させてくださいまし」',
+    hotspot: { x: 35, y: 65 },
+    hiddenEmoji: '⛱️',
+  },
+  {
+    id: 'gachan',
+    emoji: '🤖',
+    name: 'ガチャン',
+    title: 'ロボットのおもちゃ',
+    stage: 1,
+    description: 'かっこいいロボットのおもちゃ。目からビームが出る…はず。',
+    findText: 'ブランコの鎖に引っかかって、ロボットがぶらさがっていた。\n「タスケテ…カラダガ…サビチャウ…」',
+    joinText: 'ガチャンが仲間になった！\n「キュイーン！ナカマ、ウレシイ！」',
+    hotspot: { x: 60, y: 35 },
+    hiddenEmoji: '🎠',
+  },
+  {
+    id: 'mimi',
+    emoji: '🐰',
+    name: 'ミミ',
+    title: 'うさぎのぬいぐるみ',
+    stage: 1,
+    description: 'ピンクのうさぎのぬいぐるみ。長いお耳がチャームポイント。',
+    findText: 'すべり台の下で、うさぎがふるえていた。\n「こわいよぅ…暗いよぅ…」',
+    joinText: 'ミミが仲間になった！\n「えへへ…もうこわくないね！」',
+    hotspot: { x: 80, y: 70 },
+    hiddenEmoji: '🛝',
+  },
+  // ステージ3：忘れられた路地裏
+  {
+    id: 'patch',
+    emoji: '🎪',
+    name: 'パッチ',
+    title: 'ピエロ人形',
+    stage: 2,
+    description: 'いつも笑顔のピエロ人形。でも本当はさみしがりや。',
+    findText: '古い劇場の前に、ピエロ人形が倒れていた。\n「あはは…なんちゃって…もう動けないや…」',
+    joinText: 'パッチが仲間になった！\n「やった！これでまた みんなを笑わせられるね！」',
+    hotspot: { x: 30, y: 50 },
+    hiddenEmoji: '🏚️',
+  },
+  {
+    id: 'rosa',
+    emoji: '👸',
+    name: 'ローザ',
+    title: 'お姫様人形',
+    stage: 2,
+    description: 'ドレスを着たお姫様人形。プライドが高いけど、本当は優しい。',
+    findText: '壊れた窓のむこうに、ドレスの人形が見えた。\n「…だれか来たの？わたくしをお迎えに？」',
+    joinText: 'ローザが仲間になった！\n「ふん…べつに嬉しくなんかないわよ…ありがとう」',
+    hotspot: { x: 72, y: 45 },
+    hiddenEmoji: '🪟',
+  },
+  // シークレット
+  {
+    id: 'hikari',
+    emoji: '🌟',
+    name: 'ヒカリ',
+    title: '光る人形',
+    stage: 3,
+    description: 'すべての人形たちの希望の光。やくそくを守る力をくれる。',
+    findText: 'まばゆい光の中に、小さな人形が浮かんでいた。\n「…ずっと待ってたよ。みんなのことを」',
+    joinText: '🌟 ヒカリが仲間になった！ 🌟\n「さあ、みんなでおうちに帰ろう！」',
+    hotspot: { x: 50, y: 40 },
+    hiddenEmoji: '✨',
+    isSecret: true,
+  },
+];
+
+export const STAGES = [
+  {
+    id: 0,
+    name: 'ゴミ捨て場',
+    subtitle: 'はじまりの場所',
+    bgGradient: ['#0a0a1a', '#1a1a2e'],
+    bgEmojis: ['🗑️', '📦', '🌙'],
+    description: '夜のゴミ捨て場。段ボールやゴミ袋のあいだに、捨てられた人形たちがいる。',
+    decorations: [
+      { emoji: '🌙', x: 80, y: 8, size: 2.5 },
+      { emoji: '📦', x: 15, y: 60, size: 1.8 },
+      { emoji: '📦', x: 45, y: 68, size: 1.5 },
+      { emoji: '🗑️', x: 55, y: 55, size: 2.0 },
+      { emoji: '🗑️', x: 85, y: 62, size: 1.6 },
+      { emoji: '🛒', x: 10, y: 45, size: 1.3 },
+    ],
+    requiredLevel: 1,
+  },
+  {
+    id: 1,
+    name: '夜の公園',
+    subtitle: 'ほしぞらの下で',
+    bgGradient: ['#0d1b2a', '#1b2838'],
+    bgEmojis: ['🌳', '🌙', '⭐'],
+    description: '暗い公園。ブランコや すべり台のかげに、人形がかくれている。',
+    decorations: [
+      { emoji: '🌙', x: 75, y: 5, size: 2.5 },
+      { emoji: '⭐', x: 60, y: 10, size: 1.0 },
+      { emoji: '⭐', x: 40, y: 8, size: 0.8 },
+      { emoji: '⭐', x: 20, y: 12, size: 0.6 },
+      { emoji: '🌳', x: 8, y: 35, size: 2.5 },
+      { emoji: '🌳', x: 90, y: 40, size: 2.2 },
+      { emoji: '🎠', x: 50, y: 30, size: 2.0 },
+    ],
+    requiredLevel: 2,
+  },
+  {
+    id: 2,
+    name: '忘れられた路地裏',
+    subtitle: 'あめのふる みち',
+    bgGradient: ['#1a1a2e', '#2d2d44'],
+    bgEmojis: ['🏚️', '🌧️', '💧'],
+    description: '古い路地裏。雨がふっている。さみしい場所だけど、仲間がいるから大丈夫。',
+    decorations: [
+      { emoji: '🏚️', x: 20, y: 35, size: 2.5 },
+      { emoji: '🏚️', x: 75, y: 30, size: 2.0 },
+      { emoji: '🌧️', x: 30, y: 10, size: 1.5 },
+      { emoji: '🌧️', x: 60, y: 8, size: 1.5 },
+      { emoji: '💧', x: 45, y: 15, size: 0.8 },
+      { emoji: '🪟', x: 65, y: 40, size: 1.5 },
+    ],
+    requiredLevel: 3,
+  },
+  {
+    id: 3,
+    name: '子供の家への帰り道',
+    subtitle: 'やくそくの よあけ',
+    bgGradient: ['#1a1a3e', '#3d2b5a', '#5a3d6e'],
+    bgEmojis: ['🏠', '🌅', '✨'],
+    description: '夜明け前の住宅街。少しずつ空が明るくなってきた。希望の光が見える。',
+    decorations: [
+      { emoji: '🏠', x: 15, y: 40, size: 2.5 },
+      { emoji: '🏠', x: 40, y: 45, size: 2.0 },
+      { emoji: '🏠', x: 70, y: 38, size: 2.2 },
+      { emoji: '🌅', x: 50, y: 10, size: 3.0 },
+      { emoji: '✨', x: 30, y: 20, size: 1.0 },
+      { emoji: '✨', x: 65, y: 15, size: 1.2 },
+    ],
+    requiredLevel: 4,
+  },
+];
+
+export const OPENING_TEXTS = [
+  { text: '夜の子供部屋。\nみんなが寝しずまった頃…', emoji: '🌙' },
+  { text: '人形たちは こっそり遊びはじめた。', emoji: '🧸' },
+  { text: '「えへへ、今日も楽しいね！」\n「しーっ、子供に見つかっちゃうよ！」', emoji: '🪆' },
+  { text: 'そのとき——', emoji: '⚡' },
+  { text: '👧💢\n「こんな人形なんて いらない！」', emoji: '👧' },
+  { text: '人形たちは つぎつぎと 捨てられた。', emoji: '🗑️' },
+  { text: '暗い場所に 放り出されて…', emoji: '🌑' },
+  { text: '🧸「…わたしも、まいごになっちゃった」', emoji: '🧸' },
+  { text: 'でも、まだ希望はある。\n迷子の仲間たちを 見つけよう。', emoji: '✨' },
+];
+
+export const STORY_HINTS = [
+  {
+    level: 2,
+    title: 'やくそくの記憶 その１',
+    text: '「…思い出した。\nわたしたち、やくそくをしたんだ」\n\n「"夜になったら 静かにすること"」\n\n「でも わたしたち、遊んじゃったんだ…」',
+  },
+  {
+    level: 3,
+    title: 'やくそくの記憶 その２',
+    text: '「やくそく…それは"夜に遊ばない"こと。」\n\n「子供が寝ている間は おとなしくする。\nそれが人形の やくそくだった。」\n\n「でも わたしたちは 破ってしまった。\nだから子供にきらわれて、捨てられたんだ…」',
+  },
+  {
+    level: 4,
+    title: 'やくそくの記憶 その３',
+    text: '「でもね…本当は 子供も後悔してると思うの。」\n\n「だって あの子、人形たちのこと\n大好きだったんだもん。」\n\n「もういちど やくそくを守れたら…\nきっと また会えるよね？」',
+  },
+];
+
+export const ENDING_TEXTS = {
+  normal: [
+    { text: '迷子の人形たちと いっしょに、朝をむかえた。', emoji: '🌅' },
+    { text: '「もう やくそくは 破らない。」', emoji: '🧸' },
+    { text: '「いつか 子供が むかえに来てくれるかな…」', emoji: '💭' },
+    { text: 'あたたかいけど、少しだけ切ない朝。\nでも、ひとりじゃないから きっと大丈夫。', emoji: '🌤️' },
+    { text: '— おしまい —\n\nまだ見つかっていない 人形がいるみたい…？', emoji: '📖' },
+  ],
+  true: [
+    { text: 'ヒカリの やさしい光が、みんなを包んだ。', emoji: '🌟' },
+    { text: '「さあ、おうちに 帰ろう！」', emoji: '✨' },
+    { text: '光に導かれて、人形たちは 子供の家に戻った。', emoji: '🏠' },
+    { text: '朝——。\n子供が目をさますと、枕元に人形たちがいた。', emoji: '👧' },
+    { text: '「…ごめんね。\n捨てたりしないよ。」', emoji: '😢' },
+    { text: '子供は 人形たちをぎゅっと抱きしめた。', emoji: '🤗' },
+    { text: '🌟 あなたは 1位です 🌟\n\n人間にも「いい人形だ」と\n思ってもらえました！', emoji: '🏆' },
+    { text: '— 真のおしまい —\n\nすべての人形を救ってくれて ありがとう！', emoji: '📖' },
+  ],
+};
+
+export const LEVEL_THRESHOLDS = [0, 2, 5, 7, 8];
+
+export const FLAVOR_TEXTS = [
+  '暗い夜だけど、星がきれいだね。',
+  'どこかで 泣いてる声がする…',
+  'がんばれ！きっと みんな見つかるよ！',
+  '仲間が増えると 心強いね。',
+  'あきらめないで。約束を取り戻そう。',
+];
